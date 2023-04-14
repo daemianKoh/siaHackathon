@@ -29,14 +29,15 @@ bookingRefNo VARCHAR(10) NOT NULL,
 origin VARCHAR(3) NOT NULL,
 destination VARCHAR(3) NOT NULL,
 departDate Date NOT NULL,
-departTime Numeric NOT NULL,
+departTime VARCHAR (4) NOT NULL,
 arrivalDate Date NOT NULL,
-arrivalTime Numeric NOT NULL,
+arrivalTime VARCHAR (4) NOT NULL,
 FOREIGN KEY (bookingRefNo) REFERENCES FlightBooking(bookingRefNo) 
 ); 
 
 CREATE TABLE Country (  
 id INT AUTO_INCREMENT  PRIMARY KEY,  
 country VARCHAR (100) NOT NULL,
-cittyCode VARCHAR (3) NOT NULL
+cityCode VARCHAR (3) NOT NULL,
+airport VARCHAR (100) NOT NULL
 ); 
