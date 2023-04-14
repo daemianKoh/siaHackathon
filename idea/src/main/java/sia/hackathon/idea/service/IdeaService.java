@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import sia.hackathon.idea.model.Message;
-import sia.hackathon.idea.model.RequestWrapper;
+import sia.hackathon.idea.dto.Message;
+import sia.hackathon.idea.dto.RequestWrapper;
 
 @Service
 public class IdeaService {

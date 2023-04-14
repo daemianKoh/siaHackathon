@@ -1,4 +1,4 @@
-package sia.hackathon.idea.model;
+package sia.hackathon.idea.dto;
 
 import lombok.Getter;
 import lombok.Setter;

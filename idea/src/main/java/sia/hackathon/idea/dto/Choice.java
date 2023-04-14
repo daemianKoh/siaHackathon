@@ -1,4 +1,4 @@
-package sia.hackathon.idea.model;
+package sia.hackathon.idea.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
