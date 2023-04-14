@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +20,9 @@ public class FlightTravelInfo {
 	@Id
 	private Long id;
 	
-	private String bookingRefNo;
+	@ManyToOne
+	@JoinColumn(name="bookingRefNo")
+	private FlightBooking flightBooking;
 	
 	private String origin;
 	
