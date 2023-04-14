@@ -4,6 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +16,7 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
+@Table(name = "FlightPersonInfo")
 public class FlightPersonInfo {
 
 	@Id
@@ -20,6 +24,7 @@ public class FlightPersonInfo {
 	
 	@ManyToOne
 	@JoinColumn(name="bookingRefNo")
+	@JsonBackReference
 	private FlightBooking flightBooking;
 	
 	private String personName;

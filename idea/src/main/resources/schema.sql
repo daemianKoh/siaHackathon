@@ -4,12 +4,12 @@ DROP TABLE IF EXISTS FlightPersonInfo;
 DROP TABLE IF EXISTS FlightBooking;  
  
 
-CREATE TABLE FlightBooking (  
+CREATE TABLE flightBooking (  
 bookingRefNo VARCHAR(10) NOT NULL,
 PRIMARY KEY (bookingRefNo)
 );  
 
-CREATE TABLE FlightPersonInfo (  
+CREATE TABLE flightPersonInfo (  
 id INT AUTO_INCREMENT  PRIMARY KEY,  
 bookingRefNo VARCHAR(10) NOT NULL,
 personName VARCHAR(66) NOT NULL,
@@ -23,7 +23,7 @@ vaccination VARCHAR (2) NOT NULL DEFAULT 'N',
 FOREIGN KEY (bookingRefNo) REFERENCES FlightBooking(bookingRefNo) 
 );  
 
-CREATE TABLE FlightTravelInfo (  
+CREATE TABLE flightTravelInfo (  
 id INT AUTO_INCREMENT  PRIMARY KEY,  
 bookingRefNo VARCHAR(10) NOT NULL,
 origin VARCHAR(3) NOT NULL,
@@ -35,7 +35,7 @@ arrivalTime VARCHAR (4) NOT NULL,
 FOREIGN KEY (bookingRefNo) REFERENCES FlightBooking(bookingRefNo) 
 ); 
 
-CREATE TABLE Country (  
+CREATE TABLE country (  
 id INT AUTO_INCREMENT  PRIMARY KEY,  
 country VARCHAR (100) NOT NULL,
 cityCode VARCHAR (3) NOT NULL,

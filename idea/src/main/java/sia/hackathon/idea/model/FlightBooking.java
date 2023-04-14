@@ -6,6 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,14 +18,17 @@ import lombok.Setter;
 @Setter
 @Getter
 @NoArgsConstructor
+@Table(name = "FlightBooking")
 public class FlightBooking {
 	
 	@Id
 	private String bookingRefNo;
 	
-	@OneToMany(targetEntity=FlightTravelInfo.class, fetch = FetchType.LAZY, mappedBy="flightBooking")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="flightBooking")
+	@JsonManagedReference
 	private List<FlightTravelInfo> flightTravelInfos;
 	
-	@OneToMany(targetEntity=FlightPersonInfo.class, fetch = FetchType.LAZY, mappedBy="flightBooking")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy="flightBooking")
+	@JsonManagedReference
 	private List<FlightPersonInfo> flightPersonInfos;
 }

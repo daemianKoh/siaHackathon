@@ -3,6 +3,7 @@ package sia.hackathon.idea.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -12,13 +13,22 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import sia.hackathon.idea.dao.repository.FlightBookingRepository;
 import sia.hackathon.idea.dto.Message;
 import sia.hackathon.idea.dto.RequestWrapper;
+import sia.hackathon.idea.model.FlightBooking;
 
 @Service
 public class IdeaService {
 
 
+	@Autowired
+	FlightBookingRepository flightBookingRepo;
+	
+	public List<FlightBooking> testRepo() {
+		
+		return flightBookingRepo.findAll();
+	}
 
 	public void testGPT() {
 
