@@ -504,3 +504,22 @@ width: 30px;
 .idle{
   opacity: 50%;
 }
+
+.outer-cont{
+
+  
+    line-height: 80px;
+    text-align: center;
+
+
+}
+
+.inner-cont{
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+
+.center-align{
+  display: inline-block;
+}
