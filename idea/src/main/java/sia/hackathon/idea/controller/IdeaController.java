@@ -33,8 +33,8 @@ public class IdeaController {
         return ideaService.testRepo();
     }
 	
-	@RequestMapping(value = "/testUI", method = RequestMethod.GET)
+	@RequestMapping(value = "/summary", method = RequestMethod.GET)
 	public ModelAndView detail(String applRefNo, ModelMap map) throws Exception {
-		return new ModelAndView("fragments/index");
+		return new ModelAndView("fragments/summary/summaryMain");
 	}
 }
