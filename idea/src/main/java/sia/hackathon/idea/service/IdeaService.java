@@ -21,6 +21,7 @@ import sia.hackathon.idea.dto.Message;
 import sia.hackathon.idea.dto.PersonInfo;
 import sia.hackathon.idea.dto.RequestWrapper;
 import sia.hackathon.idea.dto.Response;
+import sia.hackathon.idea.model.Country;
 import sia.hackathon.idea.model.FlightBooking;
 import sia.hackathon.idea.model.FlightPersonInfo;
 import sia.hackathon.idea.model.FlightTravelInfo;
@@ -74,8 +75,11 @@ public class IdeaService {
 			for(FlightTravelInfo travelInfo : flightTravelInfos) {
 				if(SINGAPORE_CD.equals(travelInfo.getOrigin())) {
 					bookingSummary.setDepartureFromSgDate(travelInfo.getDepartDate());
-					bookingSummary.setOriginFullName(countryRepository.findCityByCityCode(travelInfo.getOrigin()));
-					bookingSummary.setDestinationFullName(countryRepository.findCityByCityCode(travelInfo.getDestination()));
+					
+					Country c = countryRepository.findFirstByCityCode(travelInfo.getOrigin());
+					bookingSummary.setOriginFullName(c.getCity());
+					c = countryRepository.findFirstByCityCode(travelInfo.getDestination());
+					bookingSummary.setDestinationFullName(c.getCity());
 				}
 				else {
 					bookingSummary.setReturnToSgDate(travelInfo.getArrivalDate());
