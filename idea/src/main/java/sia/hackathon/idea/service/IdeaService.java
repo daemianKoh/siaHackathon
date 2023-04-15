@@ -50,6 +50,9 @@ public class IdeaService {
 			p.setBaggage(flightPersonInfo.getBaggage());
 			p.setPcr(flightPersonInfo.getPcr());
 			p.setVaccination(flightPersonInfo.getVaccination());
+			p.setSeat(flightPersonInfo.getSeat());
+			p.setPassport(flightPersonInfo.getPassport());
+			p.setMeal(flightPersonInfo.getMeal());
 			personInfos.add(p);
 		}
 		return personInfos;

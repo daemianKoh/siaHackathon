@@ -10,9 +10,12 @@ public class PersonInfo {
 	private String name;
 	private String email;
 	private String nationality;
+	private String passport;
 	private String visa;
 	private String baggage;
 	private String pcr;
 	private String vaccination;	
+	private String seat;
+	private String meal;
 	
 }

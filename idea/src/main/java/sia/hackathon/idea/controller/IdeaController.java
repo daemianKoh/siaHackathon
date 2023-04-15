@@ -45,4 +45,9 @@ public class IdeaController {
 			throws Exception {
 		return ideaService.getBookingDetail(bookingRefNo);
 	}
+	
+	@RequestMapping(value = "/loadDetailPage", method = RequestMethod.GET)
+	public ModelAndView loadDetailPage() throws Exception {
+		return new ModelAndView("fragments/detail/detailMain");
+	}
 }

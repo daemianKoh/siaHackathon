@@ -20,6 +20,8 @@ seat VARCHAR(2) NOT NULL DEFAULT 'N',
 baggage VARCHAR(2) NOT NULL DEFAULT 'N',
 pcr VARCHAR (2) NOT NULL DEFAULT 'N',
 vaccination VARCHAR (2) NOT NULL DEFAULT 'N',
+passport VARCHAR (2) NOT NULL DEFAULT 'N',
+meal VARCHAR (2) NOT NULL DEFAULT 'N',
 FOREIGN KEY (bookingRefNo) REFERENCES FlightBooking(bookingRefNo) 
 );  
 

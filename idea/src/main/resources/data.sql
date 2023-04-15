@@ -3,18 +3,18 @@ INSERT INTO flightBooking (bookingRefNo) VALUES ('TRABC1');
 INSERT INTO flightBooking (bookingRefNo) VALUES ('TRABC2');
 
 --INSERT FlightPersonInfo tan ah kong
-INSERT INTO flightPersonInfo (bookingRefNo, personName, email, nationality) 
-VALUES ('TRABC1', 'Tan Ah Kong', 'tanAh@hotmail.com', 'Singaporean');
+INSERT INTO flightPersonInfo (bookingRefNo, personName, email, nationality, passport) 
+VALUES ('TRABC1', 'CK', 'ck@hotmail.com', 'Singaporean', 'Y');
 
 --INSERT FlightPersonInfo ah hua family
-INSERT INTO flightPersonInfo (bookingRefNo, personName, email, nationality) 
-VALUES ('TRABC2', 'marcus', 'marcus@hotmail.com', 'Singaporean');
-INSERT INTO flightPersonInfo (bookingRefNo, personName, email, nationality) 
-VALUES ('TRABC2', 'leonard', 'leonard@hotmail.com', 'Singaporean');
-INSERT INTO flightPersonInfo (bookingRefNo, personName, email, nationality) 
-VALUES ('TRABC2', 'daemian', 'daemian@hotmail.com', 'Singaporean');
-INSERT INTO flightPersonInfo (bookingRefNo, personName, email, nationality) 
-VALUES ('TRABC2', 'sudha', 'sudha@hotmail.com', 'Singaporean');
+INSERT INTO flightPersonInfo (bookingRefNo, personName, email, nationality, visa) 
+VALUES ('TRABC2', 'CK', 'ck@hotmail.com', 'Singaporean', 'Y');
+INSERT INTO flightPersonInfo (bookingRefNo, personName, email, nationality, seat, passport, pcr) 
+VALUES ('TRABC2', 'Balaji', 'balaji@hotmail.com', 'Singaporean', 'Y', 'Y', 'Y');
+INSERT INTO flightPersonInfo (bookingRefNo, personName, email, nationality, baggage, seat, meal, visa) 
+VALUES ('TRABC2', 'Mike', 'mike@hotmail.com', 'Singaporean', 'Y', 'Y', 'Y', 'Y' );
+INSERT INTO flightPersonInfo (bookingRefNo, personName, email, nationality, pcr, vaccination, visa) 
+VALUES ('TRABC2', 'Paul', 'paul@hotmail.com', 'Singaporean', 'Y', 'Y', 'Y');
 
 --INSERT FlightTravelInfo tan ah kong
 INSERT INTO flightTravelInfo (bookingRefNo, origin, destination, departDate, departTime, arrivalDate, arrivalTime) 

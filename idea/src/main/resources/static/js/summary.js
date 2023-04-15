@@ -35,19 +35,59 @@ function loadSummary(data) {
 	populateProfiles(data.personInfos);
 }
 
-function populateProfiles(personInfos){
+function calculatePercentage(id, idPie, personInfo){
 	
-	document.getElementById("ckTitle").textContent = personInfos.get(0).name;
+	const totalItems = 4;
+	var itemsDone = 0;
+	
+	if(personInfo.visa != 'N'){
+		itemsDone ++;
+	}
+	if(personInfo.passport != 'N'){
+		itemsDone ++;
+	}
+	if(personInfo.pcr != 'N'){
+		itemsDone ++;
+	}
+	if(personInfo.vaccination != 'N'){
+		itemsDone ++;
+	}
+	
+	const percentageDone = (itemsDone / totalItems) * 100;
+	document.getElementById(id).textContent = percentageDone + '%';
+	
+	const pieElement = document.getElementById(idPie);
+	if(itemsDone == 1){
+		pieElement.className = pieElement.className.replace('wrapper-pie', 'wrapper-pie twenty-five');
+	}
+	else if(itemsDone == 2){
+		pieElement.className = pieElement.className.replace('wrapper-pie', 'wrapper-pie fifty');
+	}
+	else if(itemsDone == 3){
+		pieElement.className = pieElement.className.replace('wrapper-pie', 'wrapper-pie seventy-five');
+	}
+	else{
+		pieElement.className = pieElement.className.replace('wrapper-pie', 'wrapper-pie hundred');
+	}
+
+}
+
+function populateProfiles(personInfos){
+	document.getElementById("ckTitle").textContent = personInfos[0].name;
+	calculatePercentage("ckSubTitle", "ckPie", personInfos[0]);
 	
 	if(personInfos.length == 1){
 		document.getElementById("balajiDiv").style.display = "none";
 		document.getElementById("mikeDiv").style.display = "none";
 		document.getElementById("paulDiv").style.display = "none";
-		
-		document.getElementById("balajiTitle").textContent = personInfos.get(0).name;
-		document.getElementById("mikeTitle").textContent = personInfos.get(0).name;
-		document.getElementById("paulTitle").textContent = personInfos.get(0).name;
-		
+	}
+	else{
+		document.getElementById("balajiTitle").textContent = personInfos[1].name;
+		calculatePercentage("balajiSubTitle", "balajiPie", personInfos[1]);
+		document.getElementById("mikeTitle").textContent = personInfos[2].name;
+		calculatePercentage("mikeSubTitle", "mikePie", personInfos[2]);
+		document.getElementById("paulTitle").textContent = personInfos[3].name;
+		calculatePercentage("paulSubTitle", "paulPie", personInfos[3]);
 	}
 	
 }
