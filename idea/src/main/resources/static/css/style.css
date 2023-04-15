@@ -1,0 +1,279 @@
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.jumbotron{
+    background-color: #FFE900 !important;
+}
+
+.main-title{
+
+    font-size: 26px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.sub-title{
+    font-size: 18px;
+    font-weight: 400;
+    text-align: center;
+}
+
+.calender{
+    font-size: 26px;
+    font-weight: 700;
+}
+
+.calender-lable{
+    font-size: 14px;
+    font-weight: 400;
+    color: rgb(158, 158, 0);
+}
+
+
+.leave-from{
+    border: 1px solid #D2C001; 
+    padding:2%; 
+    margin-right: 10px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.go-to{
+    border: 1px solid #D2C001; 
+    padding:2%; 
+    margin-right: 10px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+.go-to-bor{
+    border: 1px solid #D2C001; 
+    padding:2%; 
+    border-radius: 20px;
+    text-align: center;
+}
+
+
+
+
+.wrapper {
+    font-family: Arial, sans-serif;
+  display: inline-flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 80%;
+  border:1px solid #FFE500;
+  border-radius: 20px;
+
+}
+
+.card {
+  max-width: 300px;
+text-align: center;
+
+  padding: 20px;
+  box-sizing: border-box;
+  color: #fff;
+  margin: 10px;
+ 
+}
+
+.card:nth-child(2) {
+
+}
+
+.card:last-child {
+
+}
+
+.card-title {
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: Arial, sans-serif;
+  color: black;
+
+}
+.card-sub-title {
+    margin-top: 0;
+    font-size: 12px;
+    font-weight: 100;
+    font-family: Arial, sans-serif;
+    color: black;
+  }
+
+.card-content {
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  line-height: 1.5;
+}
+
+.card-btn {
+  all: unset;
+  display: block;
+  margin-left: auto;
+  border: 2px solid #fff;
+  padding: 10px, 15px;
+  border-radius: 25px;
+  font-size: 10px;
+  font-weight: 600;
+  transition: all 0.5s;
+  letter-spacing: 1.2px;
+}
+
+.card-btn:hover {
+  color: #4181ee;
+  background: #fff;
+}
+
+.card:nth-child(2) .card-btn:hover {
+  color: #4181ee;
+  background: #fff;
+}
+
+.card:last-child .card-btn:hover {
+  color: #637ab7;
+  background: #fff;
+}
+
+
+
+
+
+.wrapper-pie {  
+
+    height: 100px;
+    width: 100px;
+    position: relative;
+
+    border-radius: 50%;
+
+  }
+  
+  .circle {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+
+  }
+  .circle-1 {
+    background-image: url("images/marcus.png");
+   
+
+  }
+  
+  .pie {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;  
+    border-radius: 50%;
+  }
+  
+  .text {
+    position: absolute;
+    top: 6%;
+    left: 6%;
+    width: 88%;
+    height: 88%;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    font-size: 12px;
+    font-weight: bold;
+    font-family: Sans-Serif;
+
+    border-radius: 50%;
+    box-shadow: inset 0 0 8px #ddd;
+  }
+  
+  .fourty .circle {
+    background-color: #FFE900;
+  }
+  
+  .fourty .pie {
+    background-image: linear-gradient(0deg, transparent 50%, #000000 50%), linear-gradient(126deg, #000000 50%, transparent 50%);
+  }
+  
+  .ninety .circle {
+    background-color: green;
+    opacity: 0.3;
+  }
+  
+  .ninety .pie {
+    background-image: 
+          linear-gradient(126deg, rgb(0, 0, 0) 50%, transparent 50%),
+          linear-gradient(180deg, transparent 50%, rgb(0, 0, 0) 50%);
+  }
+
+
+
+
+
+  :root{
+    --white:black;
+    --smoke-white:#f1f3f5;
+    --blue:#FFE900;
+}
+.container-chip{
+    position:relative;
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.selector{
+    padding: 10px;
+    position:relative;
+    width:50%;
+    background-color:var(--smoke-white);
+    height:80px;
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+
+  
+}
+.selecotr-item{
+    position:relative;
+    flex-basis:calc(110% / 1);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.selector-item_radio{
+    appearance:none;
+    display:none;
+}
+.selector-item_label{
+    position:relative;
+    height:80%;
+    width:100%;
+    text-align:center;
+    border-radius:9999px;
+    line-height:400%;
+    font-weight:900;
+    transition-duration:.5s;
+    transition-property:transform, color, box-shadow;
+    transform:none;
+}
+.selector-item_radio:checked + .selector-item_label{
+    background-color:var(--blue);
+    color:var(--white);
+   
+    
+}
+@media (max-width:480px) {
+  .selector{
+    width: 90%;
+  }
+}
+
+
+
