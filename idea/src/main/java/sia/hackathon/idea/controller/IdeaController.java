@@ -3,6 +3,8 @@ package sia.hackathon.idea.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,13 +43,27 @@ public class IdeaController {
 	}
 
 	@RequestMapping(value = "/getBookingSummary", method = RequestMethod.POST)
-	public Response getBookingSummary(@RequestParam(name = "bookingRefNo") String bookingRefNo, Model model)
+	public Response getBookingSummary(@RequestParam(name = "bookingRefNo") String bookingRefNo, HttpSession session)
 			throws Exception {
-		return ideaService.getBookingDetail(bookingRefNo);
+		session.setAttribute("bookingRefNo", bookingRefNo);
+		return ideaService.getBookingDetail(bookingRefNo, null);
 	}
 	
-	@RequestMapping(value = "/loadDetailPage", method = RequestMethod.GET)
-	public ModelAndView loadDetailPage() throws Exception {
+	@RequestMapping(value = "/details", method = RequestMethod.POST)
+	public ModelAndView loadDetailPage(@RequestParam(name = "bookingRefNo") String bookingRefNo, @RequestParam(name = "nameValue") String nameValue,
+			HttpSession session) throws Exception {
+		
+		session.setAttribute("nameValue", nameValue);
 		return new ModelAndView("fragments/detail/detailMain");
+	}
+	
+	@RequestMapping(value = "/getDetail", method = RequestMethod.POST)
+	public Response getDetail(HttpSession session)
+			throws Exception {
+		
+		String name = (String)session.getAttribute("nameValue");
+		String bookRefNo = (String)session.getAttribute("bookingRefNo");		
+		
+		return ideaService.getBookingDetail(bookRefNo, name);
 	}
 }

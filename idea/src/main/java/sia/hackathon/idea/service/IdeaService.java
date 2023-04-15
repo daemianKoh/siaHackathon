@@ -11,6 +11,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -37,28 +38,42 @@ public class IdeaService {
 	@Autowired
 	CountryRepository countryRepository;
 	
-	private List<PersonInfo> populatePersonInfo(List<FlightPersonInfo> flightPersonInfos){
+	private List<PersonInfo> populatePersonInfo(List<FlightPersonInfo> flightPersonInfos, String name){
 		
 		List<PersonInfo> personInfos = new ArrayList<>();
 		
 		for(FlightPersonInfo flightPersonInfo : flightPersonInfos) {
-			PersonInfo p = new PersonInfo();
-			p.setName(flightPersonInfo.getPersonName());
-			p.setEmail(flightPersonInfo.getEmail());
-			p.setNationality(flightPersonInfo.getNationality());
-			p.setVisa(flightPersonInfo.getVisa());
-			p.setBaggage(flightPersonInfo.getBaggage());
-			p.setPcr(flightPersonInfo.getPcr());
-			p.setVaccination(flightPersonInfo.getVaccination());
-			p.setSeat(flightPersonInfo.getSeat());
-			p.setPassport(flightPersonInfo.getPassport());
-			p.setMeal(flightPersonInfo.getMeal());
-			personInfos.add(p);
+			
+			if(!ObjectUtils.isEmpty(name)) {
+				if(name.equalsIgnoreCase(flightPersonInfo.getPersonName())) {
+					PersonInfo p = new PersonInfo();
+					p.setName(flightPersonInfo.getPersonName());
+					p.setEmail(flightPersonInfo.getEmail());
+					p.setNationality(flightPersonInfo.getNationality());
+					p.setVisa(flightPersonInfo.getVisa());
+					p.setPcr(flightPersonInfo.getPcr());
+					p.setVaccination(flightPersonInfo.getVaccination());
+					p.setPassport(flightPersonInfo.getPassport());
+					personInfos.add(p);
+					break;
+				}
+			}
+			else {
+				PersonInfo p = new PersonInfo();
+				p.setName(flightPersonInfo.getPersonName());
+				p.setEmail(flightPersonInfo.getEmail());
+				p.setNationality(flightPersonInfo.getNationality());
+				p.setVisa(flightPersonInfo.getVisa());
+				p.setPcr(flightPersonInfo.getPcr());
+				p.setVaccination(flightPersonInfo.getVaccination());
+				p.setPassport(flightPersonInfo.getPassport());
+				personInfos.add(p);
+			}
 		}
 		return personInfos;
 	}
 	
-	public Response getBookingDetail(String bookingRef) {
+	public Response getBookingDetail(String bookingRef, String name) {
 		
 		Response response = new Response();
 		Optional<FlightBooking> optionalFlightBooking = flightBookingRepo.findById(bookingRef);
@@ -72,7 +87,7 @@ public class IdeaService {
 			bookingSummary.setBookingRefNo(bookingRef);
 			bookingSummary.setNumberOfPerson(flightPersonInfos.size());
 			
-			List<PersonInfo> personInfos = populatePersonInfo(flightPersonInfos);
+			List<PersonInfo> personInfos = populatePersonInfo(flightPersonInfos, name);
 			bookingSummary.setPersonInfos(personInfos);
 			
 			for(FlightTravelInfo travelInfo : flightTravelInfos) {

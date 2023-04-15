@@ -7,15 +7,14 @@ import lombok.Setter;
 @Getter
 public class PersonInfo {
 	
+	private String id;
+	private String bookingRefNo;
 	private String name;
 	private String email;
 	private String nationality;
 	private String passport;
 	private String visa;
-	private String baggage;
 	private String pcr;
 	private String vaccination;	
-	private String seat;
-	private String meal;
 	
 }

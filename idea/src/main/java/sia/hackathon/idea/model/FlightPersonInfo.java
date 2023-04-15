@@ -35,15 +35,9 @@ public class FlightPersonInfo {
 	
 	private String visa;
 	
-	private String baggage;
-	
 	private String pcr;
 	
 	private String vaccination;
 	
-	private String seat;
-	
 	private String passport;
-	
-	private String meal;
 }

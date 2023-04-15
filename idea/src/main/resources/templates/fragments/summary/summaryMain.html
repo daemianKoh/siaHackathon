@@ -3,8 +3,11 @@
 	xmlns:th="http://www.thymeleaf.org">
 <th:block layout:fragment="content">
 
-	<input type="hidden" name="bookingRefNo" id="bookingRefNo" th:value="${bookingRefNo}">
-	
+	<form th:action="@{/details}" method="POST" id="detailForm">
+		<input type="hidden" name="bookingRefNo" id="bookingRefNo" th:value="${bookingRefNo}">
+		<input type="hidden" name="nameValue" id="nameValue">
+	</form>
+
 	<div th:replace="fragments/summary/summaryTitleText :: summaryTItleText"></div>
 	<br>
 	<br>
@@ -16,9 +19,9 @@
 	<br>
 	<div th:replace="fragments/summary/travelDetail :: travelDetail"></div>
 	<div th:replace="fragments/summary/profiles :: profiles"></div>
-	
+
 	<script th:src="@{/js/summary.js}"></script>
-	
+
 </th:block>
 
 </html>
