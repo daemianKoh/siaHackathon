@@ -6,4 +6,5 @@ import sia.hackathon.idea.model.Country;
 
 public interface CountryRepository extends JpaRepository<Country, Long>{
 
+	String findCityByCityCode(String cityCode);
 }
