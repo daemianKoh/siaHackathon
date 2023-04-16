@@ -523,3 +523,71 @@ width: 30px;
 .center-align{
   display: inline-block;
 }
+
+
+.lightbox {
+  background: #fff;
+  border: 6px solid #FFE500;
+  border-radius: 12px;
+  opacity: 0;
+  padding: 20px;
+  visibility: hidden;
+  width: 50%;
+  position: relative;
+  top: -43rem;
+  left: 50%;
+  margin-left: -8%;
+  margin-top: 3%;
+  transition: all 0.8s ease;
+
+  transition: all 0.8s ease;
+}
+	.lightbox__close {
+		background: #fff;
+		color: #000;
+		display: block;
+		font-weight: bold;
+		height: 3rem;
+		line-height: 3rem;
+		text-align: center;
+		text-decoration: none;
+		width: 3rem;
+
+		border-radius: 100%;
+		box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+
+		position: absolute; top: -1.5rem; right: -1.5rem;
+	}
+
+.lightbox:target {
+	opacity: 1;
+	visibility: visible;
+}
+
+
+
+
+
+.chat-bubble-container {
+  width: auto;
+  display: flex
+}
+
+.chat-bubble {
+  font-size: 1.4rem;
+  padding: 1rem 1.4rem;
+  margin: 1rem 3rem;
+  border-radius: .9rem;
+  max-width: 50%;  
+}
+
+.msg-friend {
+  color: white;
+  background-color: rgb(33, 33, 33);
+  margin-left: auto;
+}
+
+.msg-self {
+  color: black;
+  background-color: #FFE500;  
+}
