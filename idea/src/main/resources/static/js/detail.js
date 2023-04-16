@@ -2,6 +2,11 @@ $(document).ready(function() {
 	getDetail();
 });
 
+
+function initGpt(){
+	
+}
+
 const btnYes = document.getElementById('btnYesSave');
 btnYes.addEventListener('click', function(event) {
 	event.preventDefault();
