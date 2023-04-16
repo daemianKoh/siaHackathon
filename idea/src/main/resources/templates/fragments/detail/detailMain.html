@@ -5,47 +5,48 @@
 
 	<input type="hidden" name="bookingRefNo" id="bookingRefNo" th:value="${bookingRefNo}">
 
-	<div th:replace="fragments/summary/summaryTitleText :: summaryTItleText"></div>
-	<br>
-	<br>
-	<div th:replace="fragments/summary/timeLeft :: timeLeft"></div>
-	<br>
-	<br>
-	<div th:replace="fragments/summary/groupIndividual :: groupIndividual"></div>
-	<br>
-	<br>
-	<div th:replace="fragments/summary/travelDetail :: travelDetail"></div>
-	<br>
-	<div th:replace="fragments/detail/profile :: profile"></div>
-	<br>
-	<br>
-	<div th:replace="fragments/detail/toPurchaseItem :: toPurcase"></div>
-	<br>
-	<br>
-	<br>
-	<div th:replace="fragments/detail/virtualTourGuide :: virtualTourGuide"></div>
-	<div th:replace="fragments/detail/scootBro :: scootBro"></div>
+	<div class="container">
+		<div th:replace="fragments/summary/summaryTitleText :: summaryTItleText"></div>
+		<br>
+		<br>
+		<div th:replace="fragments/summary/timeLeft :: timeLeft"></div>
+		<br>
+		<br>
+		<div th:replace="fragments/summary/groupIndividual :: groupIndividual"></div>
+		<br>
+		<br>
+		<div th:replace="fragments/summary/travelDetail :: travelDetail"></div>
+		<br>
+		<div th:replace="fragments/detail/profile :: profile"></div>
+		<br>
+		<br>
+		<div th:replace="fragments/detail/toPurchaseItem :: toPurcase"></div>
+		<br>
+		<br>
+		<br>
+		<div th:replace="fragments/detail/virtualTourGuide :: virtualTourGuide"></div>
+		<div th:replace="fragments/detail/scootBro :: scootBro"></div>
 
-	<div class="row">
-		<div class="col-sm-2">
-		</div>
-		<div class="col-sm-8" style="text-align: center">
+		<div class="row">
+			<div class="col-sm-2">
+			</div>
+			<div class="col-sm-8" style="text-align: center">
 
-		</div>
-		<div class="col-sm-2">
+			</div>
+			<div class="col-sm-2">
 
+			</div>
 		</div>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+		<br>
+
+		<script th:src="@{/js/detail.js}"></script>
 	</div>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-
-	<script th:src="@{/js/detail.js}"></script>
-
 </th:block>
 
 </html>

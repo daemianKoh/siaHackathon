@@ -14,4 +14,9 @@ public class Choice {
 	
 	@JsonProperty("message")
 	private Message message;
+
+	@Override
+	public String toString() {
+		return "Choice [index=" + index + ", finish_reason=" + finish_reason + ", message=" + message + "]";
+	}
 }

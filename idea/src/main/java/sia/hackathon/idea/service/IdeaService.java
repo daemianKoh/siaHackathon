@@ -18,6 +18,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import sia.hackathon.idea.dao.repository.CountryRepository;
 import sia.hackathon.idea.dao.repository.FlightBookingRepository;
 import sia.hackathon.idea.dto.BookingSummaryResponse;
+import sia.hackathon.idea.dto.GptOutput;
 import sia.hackathon.idea.dto.Message;
 import sia.hackathon.idea.dto.PersonInfo;
 import sia.hackathon.idea.dto.RequestWrapper;
@@ -135,8 +136,12 @@ public class IdeaService {
 				.encode().toUriString();
 
 		System.out.println("urlTemplate >> " + urlTemplate);
-		ResponseEntity<?> response = restTemplate.exchange(urlTemplate, HttpMethod.POST, httpEntity, String.class);
+		ResponseEntity<?> response = restTemplate.exchange(urlTemplate, HttpMethod.POST, httpEntity, GptOutput.class);
 
+		GptOutput output = (GptOutput)response.getBody();
+		System.out.println("output >> " + output);
+		System.out.println("output.getChoices() >> " + output.getChoices());
+		System.out.println("output >> " + output.getChoices().get(0).getMessage());
 		System.out.println("STATUS >> " + response.getStatusCodeValue());
 		System.out.println("object >> " + response.getBody());
 	}

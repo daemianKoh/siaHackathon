@@ -7,19 +7,19 @@
 		<input type="hidden" name="bookingRefNo" id="bookingRefNo" th:value="${bookingRefNo}">
 		<input type="hidden" name="nameValue" id="nameValue">
 	</form>
-
-	<div th:replace="fragments/summary/summaryTitleText :: summaryTItleText"></div>
-	<br>
-	<br>
-	<div th:replace="fragments/summary/timeLeft :: timeLeft"></div>
-	<br>
-	<br>
-	<div th:replace="fragments/summary/groupIndividual :: groupIndividual"></div>
-	<br>
-	<br>
-	<div th:replace="fragments/summary/travelDetail :: travelDetail"></div>
-	<div th:replace="fragments/summary/profiles :: profiles"></div>
-
+	<div class="container">
+		<div th:replace="fragments/summary/summaryTitleText :: summaryTItleText"></div>
+		<br>
+		<br>
+		<div th:replace="fragments/summary/timeLeft :: timeLeft"></div>
+		<br>
+		<br>
+		<div th:replace="fragments/summary/groupIndividual :: groupIndividual"></div>
+		<br>
+		<br>
+		<div th:replace="fragments/summary/travelDetail :: travelDetail"></div>
+		<div th:replace="fragments/summary/profiles :: profiles"></div>
+	</div>
 	<script th:src="@{/js/summary.js}"></script>
 
 </th:block>
