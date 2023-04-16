@@ -22,5 +22,5 @@ public class Country {
 	
 	private String cityCode;
 	
-	private String airport;
+	private String city;
 }

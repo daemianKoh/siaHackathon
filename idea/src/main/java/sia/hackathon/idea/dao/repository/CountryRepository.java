@@ -6,4 +6,5 @@ import sia.hackathon.idea.model.Country;
 
 public interface CountryRepository extends JpaRepository<Country, Long>{
 
+	 Country findFirstByCityCode(String cityCode);
 }

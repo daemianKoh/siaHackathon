@@ -1,13 +1,27 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/main_layout}"
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layout/main_layout}"
 	xmlns:th="http://www.thymeleaf.org">
 <th:block layout:fragment="content">
-	
-	
+
+	<form th:action="@{/details}" method="POST" id="detailForm">
+		<input type="hidden" name="bookingRefNo" id="bookingRefNo" th:value="${bookingRefNo}">
+		<input type="hidden" name="nameValue" id="nameValue">
+	</form>
+
 	<div th:replace="fragments/summary/summaryTitleText :: summaryTItleText"></div>
 	<br>
 	<br>
 	<div th:replace="fragments/summary/timeLeft :: timeLeft"></div>
+	<br>
+	<br>
+	<div th:replace="fragments/summary/groupIndividual :: groupIndividual"></div>
+	<br>
+	<br>
+	<div th:replace="fragments/summary/travelDetail :: travelDetail"></div>
+	<div th:replace="fragments/summary/profiles :: profiles"></div>
+
+	<script th:src="@{/js/summary.js}"></script>
+
 </th:block>
+
 </html>

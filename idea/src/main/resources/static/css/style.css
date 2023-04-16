@@ -19,6 +19,12 @@ body{
     font-weight: 400;
     text-align: center;
 }
+.sub-title-tile{
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+}
 
 .calender{
     font-size: 26px;
@@ -33,7 +39,7 @@ body{
 
 
 .leave-from{
-    border: 1px solid #D2C001; 
+  border:1px solid #FFE500;
     padding:2%; 
     margin-right: 10px;
     border-radius: 20px;
@@ -41,18 +47,20 @@ body{
 }
 
 .go-to{
-    border: 1px solid #D2C001; 
+  border:1px solid #FFE500;
     padding:2%; 
+
     margin-right: 10px;
     border-radius: 20px;
     text-align: center;
 }
 
 .go-to-bor{
-    border: 1px solid #D2C001; 
+  border:1px solid #FFE500;
     padding:2%; 
     border-radius: 20px;
     text-align: center;
+    padding-right: 5% !important;
 }
 
 
@@ -194,10 +202,52 @@ text-align: center;
   .fourty .circle {
     background-color: #FFE900;
   }
-  
+
+
+
   .fourty .pie {
     background-image: linear-gradient(0deg, transparent 50%, #000000 50%), linear-gradient(126deg, #000000 50%, transparent 50%);
   }
+
+
+
+  .twenty-five .circle{
+    background-color: #FFE900;
+  }
+  
+  .twenty-five .circle{
+    background-image: linear-gradient(180deg, transparent 50%, #000000 50%), linear-gradient(90deg, #000000 50%, transparent 50%);
+  }
+
+  .fifty .pie {
+    background-image: linear-gradient(270deg, transparent 50%, #000000 50%), linear-gradient(90deg, #000000 50%, transparent 50%);
+  }
+
+  .fifty .circle{
+    background-color: #FFE900;
+  
+  }
+
+  .seventy-five .pie {
+    background-image: linear-gradient(90deg, transparent 50%, #FFE900 50%), linear-gradient(0deg, #FFE900 50%, transparent 50%);
+  }
+
+  .seventy-five .circle{
+    background-color: #000000;
+  
+  }
+
+
+  .hundred .pie {
+    background-image: linear-gradient(90deg, transparent 50%, #FFE900 50%), linear-gradient(90deg, #FFE900 50%, transparent 50%);
+  }
+
+  .hundred .circle{
+    background-color: #000000;
+  
+  }
+
+
   
   .ninety .circle {
     background-color: green;
@@ -231,7 +281,7 @@ text-align: center;
     padding: 10px;
     position:relative;
     width:50%;
-    background-color:var(--smoke-white);
+    
     height:80px;
     display:flex;
     justify-content:space-around;
@@ -257,7 +307,7 @@ text-align: center;
     width:100%;
     text-align:center;
     border-radius:9999px;
-    line-height:400%;
+    line-height:40px;
     font-weight:900;
     transition-duration:.5s;
     transition-property:transform, color, box-shadow;
@@ -277,3 +327,199 @@ text-align: center;
 
 
 
+
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  margin: 9px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s cubic-bezier(0,1,0.5,1);
+  border-radius: 4px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s cubic-bezier(0,1,0.5,1);
+  border-radius: 3px;
+}
+
+input:checked + .slider {
+  background-color: #dfcc00;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 4px #e1ce00;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+input:checked + .slider.red {
+  background-color: crimson;
+}
+
+input:focus + .slider.red {
+  box-shadow: 0 0 4px crimson;
+}
+
+input:checked + .slider.red {
+  background-color: crimson;
+}
+
+#round {
+  border-radius: 34px;
+}
+
+#round:before {
+  border-radius: 50%;
+}
+
+input:checked + .slider.red {
+  background-color: crimson;
+}
+
+input:focus + .slider.blue {
+  box-shadow: 0 0 4px #424bf5;
+}
+
+input:checked + .slider.blue {
+  background-color: #424bf5;
+}
+
+
+.internal-text{
+  padding-top: 4px;
+font-weight: 400;
+}
+
+.mini-icon{
+padding-top: 7px;
+width: 30px;
+
+}
+
+.mini-icon-container{
+  text-align: right;
+}
+
+.user-profile-container{
+  border:1px solid #FFE500;
+  border-radius: 20px;
+  padding: 30px;
+}
+
+.tile{
+  background-color: #FFE500;
+  border-radius: 20px;
+  padding: 40px;
+  height: 250px;
+  text-align:center;
+}
+
+.button3 {border-radius: 100px;}
+
+.button {
+  background-color: #FFE500; /* Green */
+  border: none;
+  color: black;
+  padding: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  display: inline-block;
+  font-size: 12px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+
+.float-container {
+   
+}
+
+.float-child {
+    width: 50%;
+    float: left;
+    text-align: right;
+   
+}  
+
+
+.dot-amber {
+  height: 12px;
+  width: 12px;
+  background-color: rgb(255, 170, 12);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dot-green {
+  height: 12px;
+  width: 12px;
+  background-color: rgb(0, 153, 71);
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.idle{
+  opacity: 50%;
+}
+
+.outer-cont{
+
+  
+    line-height: 80px;
+    text-align: center;
+
+
+}
+
+.inner-cont{
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal;
+}
+
+.center-align{
+  display: inline-block;
+}

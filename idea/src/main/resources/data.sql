@@ -3,18 +3,18 @@ INSERT INTO flightBooking (bookingRefNo) VALUES ('TRABC1');
 INSERT INTO flightBooking (bookingRefNo) VALUES ('TRABC2');
 
 --INSERT FlightPersonInfo tan ah kong
-INSERT INTO flightPersonInfo (bookingRefNo, personName, email, nationality) 
-VALUES ('TRABC1', 'Tan Ah Kong', 'tanAh@hotmail.com', 'Singaporean');
+INSERT INTO flightPersonInfo (bookingRefNo, personName, email, nationality, passport) 
+VALUES ('TRABC1', 'CK', 'ck@hotmail.com', 'Singaporean', 'Y');
 
 --INSERT FlightPersonInfo ah hua family
-INSERT INTO flightPersonInfo (bookingRefNo, personName, email, nationality) 
-VALUES ('TRABC2', 'marcus', 'marcus@hotmail.com', 'Singaporean');
-INSERT INTO flightPersonInfo (bookingRefNo, personName, email, nationality) 
-VALUES ('TRABC2', 'leonard', 'leonard@hotmail.com', 'Singaporean');
-INSERT INTO flightPersonInfo (bookingRefNo, personName, email, nationality) 
-VALUES ('TRABC2', 'daemian', 'daemian@hotmail.com', 'Singaporean');
-INSERT INTO flightPersonInfo (bookingRefNo, personName, email, nationality) 
-VALUES ('TRABC2', 'sudha', 'sudha@hotmail.com', 'Singaporean');
+INSERT INTO flightPersonInfo (bookingRefNo, personName, email, nationality, visa) 
+VALUES ('TRABC2', 'CK', 'ck@hotmail.com', 'Singaporean', 'Y');
+INSERT INTO flightPersonInfo (bookingRefNo, personName, email, nationality, passport, pcr) 
+VALUES ('TRABC2', 'Balaji', 'balaji@hotmail.com', 'Singaporean', 'Y', 'Y');
+INSERT INTO flightPersonInfo (bookingRefNo, personName, email, nationality, visa) 
+VALUES ('TRABC2', 'Mike', 'mike@hotmail.com', 'Singaporean', 'Y' );
+INSERT INTO flightPersonInfo (bookingRefNo, personName, email, nationality, pcr, vaccination, visa) 
+VALUES ('TRABC2', 'Paul', 'paul@hotmail.com', 'Singaporean', 'Y', 'Y', 'Y');
 
 --INSERT FlightTravelInfo tan ah kong
 INSERT INTO flightTravelInfo (bookingRefNo, origin, destination, departDate, departTime, arrivalDate, arrivalTime) 
@@ -29,19 +29,20 @@ VALUES ('TRABC2', 'TPE', 'SIN', parseDateTime('16-05-2023', 'dd-MM-yyyy'), '1000
 
 
 --INSERT Country
-INSERT INTO country (country, cityCode, airport) VALUES ('Australia','ADL','Adelaide');
-INSERT INTO country (country, cityCode, airport) VALUES ('Australia','AYQ','Ayers Rock/Uluru');
-INSERT INTO country (country, cityCode, airport) VALUES ('Australia','BNE','Brisbane');
-INSERT INTO country (country, cityCode, airport) VALUES ('Australia','CBR','Canberra');
-INSERT INTO country (country, cityCode, airport) VALUES ('Australia','CNS','Cairns');
-INSERT INTO country (country, cityCode, airport) VALUES ('Australia','HBA','Hobart');
-INSERT INTO country (country, cityCode, airport) VALUES ('Australia','LST','Launceston');
-INSERT INTO country (country, cityCode, airport) VALUES ('Australia','MEL','Melbourne');
-INSERT INTO country (country, cityCode, airport) VALUES ('Australia','OOL','Gold Coast');
-INSERT INTO country (country, cityCode, airport) VALUES ('Australia','PER','Perth');
-INSERT INTO country (country, cityCode, airport) VALUES ('Australia','SYD','Sydney');
-INSERT INTO country (country, cityCode, airport) VALUES ('Japan','CTS','Sapporo');
-INSERT INTO country (country, cityCode, airport) VALUES ('Japan','KIX','Osaka');
-INSERT INTO country (country, cityCode, airport) VALUES ('Japan','NRT','Tokyo');
-INSERT INTO country (country, cityCode, airport) VALUES ('Taiwan','KHH','Kaohsiung');
-INSERT INTO country (country, cityCode, airport) VALUES ('Taiwan','TPE','Taipei');
+INSERT INTO country (country, cityCode, city) VALUES ('Singapore', 'SIN', 'Singapore');
+INSERT INTO country (country, cityCode, city) VALUES ('Australia','ADL','Adelaide');
+INSERT INTO country (country, cityCode, city) VALUES ('Australia','AYQ','Ayers Rock/Uluru');
+INSERT INTO country (country, cityCode, city) VALUES ('Australia','BNE','Brisbane');
+INSERT INTO country (country, cityCode, city) VALUES ('Australia','CBR','Canberra');
+INSERT INTO country (country, cityCode, city) VALUES ('Australia','CNS','Cairns');
+INSERT INTO country (country, cityCode, city) VALUES ('Australia','HBA','Hobart');
+INSERT INTO country (country, cityCode, city) VALUES ('Australia','LST','Launceston');
+INSERT INTO country (country, cityCode, city) VALUES ('Australia','MEL','Melbourne');
+INSERT INTO country (country, cityCode, city) VALUES ('Australia','OOL','Gold Coast');
+INSERT INTO country (country, cityCode, city) VALUES ('Australia','PER','Perth');
+INSERT INTO country (country, cityCode, city) VALUES ('Australia','SYD','Sydney');
+INSERT INTO country (country, cityCode, city) VALUES ('Japan','CTS','Sapporo');
+INSERT INTO country (country, cityCode, city) VALUES ('Japan','KIX','Osaka');
+INSERT INTO country (country, cityCode, city) VALUES ('Japan','NRT','Tokyo');
+INSERT INTO country (country, cityCode, city) VALUES ('Taiwan','KHH','Kaohsiung');
+INSERT INTO country (country, cityCode, city) VALUES ('Taiwan','TPE','Taipei');
