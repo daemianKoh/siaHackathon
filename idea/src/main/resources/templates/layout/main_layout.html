@@ -12,8 +12,10 @@
 <title>Scooooooooot</title>
 </head>
 <body>
+	<div class="container">
 	<div th:replace="fragments/header/header :: header"></div>
 	<div layout:fragment="content"></div>
+	</div>
 	<script th:src="@{/js/common.js}"></script>
 </body>
 </html>

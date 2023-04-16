@@ -5,17 +5,11 @@
 
 	<input type="hidden" name="bookingRefNo" id="bookingRefNo" th:value="${bookingRefNo}">
 
-	<div class="container">
 		<div th:replace="fragments/summary/summaryTitleText :: summaryTItleText"></div>
 		<br>
 		<br>
 		<div th:replace="fragments/summary/timeLeft :: timeLeft"></div>
 		<br>
-		<br>
-		<div th:replace="fragments/summary/groupIndividual :: groupIndividual"></div>
-		<br>
-		<br>
-		<div th:replace="fragments/summary/travelDetail :: travelDetail"></div>
 		<br>
 		<div th:replace="fragments/detail/profile :: profile"></div>
 		<br>
@@ -47,7 +41,6 @@
 		<br>
 
 		<script th:src="@{/js/detail.js}"></script>
-	</div>
 </th:block>
 
 </html>

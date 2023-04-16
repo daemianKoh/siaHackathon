@@ -56,47 +56,29 @@ function populateProfiles(personInfos) {
 }
 
 function populateTravelDetail(data) {
-	const idLeaveFrm = document.getElementById("idLeaveFrm");
-	const idGoto = document.getElementById("idGoto");
-	const idLeaveDt = document.getElementById("idLeaveDt");
-	const idReturnDt = document.getElementById("idReturnDt");
-
-	idLeaveFrm.textContent = data.originFullName;
-	idGoto.textContent = data.destinationFullName;
-
-
+	
+	const idItineary = document.getElementById("idItineary");	
 	const departDate = new Date(data.departureFromSgDate); // Replace with your date
 	const returnDate = new Date(data.returnToSgDate); // Replace with your date
 
-	const options = { day: "2-digit", month: "short", weekday: "short" };
+	const options = {  day: 'numeric', month: 'short', year: 'numeric' };
 	const formattedDepartDate = departDate.toLocaleDateString("en-US", options);
 	const formattedReturnDate = returnDate.toLocaleDateString("en-US", options);
 
-
-
-	idLeaveDt.textContent = formattedDepartDate;
-	idReturnDt.textContent = formattedReturnDate;
+	idItineary.textContent = data.originFullName + " to " + data.destinationFullName + ", " + formattedDepartDate + " - " + formattedReturnDate;
 }
 
 function groupOrIndividual(numberOfPerson) {
 
 	const myDiv = document.getElementById("summaryStsText");
-
+	document.getElementById("idPax").textContent = "X " + numberOfPerson;
+	
 	if (numberOfPerson == 1) {
 		myDiv.textContent = "Your booking summary and status";
-		document.getElementById("individualId").checked = true;
 	}
 	else {
 		myDiv.textContent = "Your group booking summary and status";
-		document.getElementById("grpId").checked = true;
 	}
-
-	const radios = document.getElementsByName("radioGrpIndividual");
-
-	for (let i = 0; i < radios.length; i++) {
-		radios[i].disabled = true;
-	}
-
 }
 
 function caluclateLeftOverDate(dateString) {
