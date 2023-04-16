@@ -2,6 +2,13 @@ $(document).ready(function() {
 	getDetail();
 });
 
+const btnYes = document.getElementById('btnYes');
+btnYes.addEventListener('click', function(event) {
+	event.preventDefault();
+	const updateDetail = document.querySelector('#updateDetail');
+	updateDetail.submit();
+});
+
 function getDetail() {
 	var path = './getDetail';
 	$.ajax({
@@ -30,26 +37,26 @@ function loadSummary(data) {
 }
 
 function populateRequirement(personInfo) {
-	
+
 	document.getElementById("name").textContent = personInfo.name;
-	
-	if('CK' == personInfo.name){
+
+	if ('CK' == personInfo.name) {
 		myImage = document.getElementById('idProfilePic').src = 'images/ck-full.png';
 	}
-	else if('Balaji' == personInfo.name){
+	else if ('Balaji' == personInfo.name) {
 		myImage = document.getElementById('idProfilePic').src = 'images/balaji-full.png';
 	}
-	else if('Mike' == personInfo.name){
+	else if ('Mike' == personInfo.name) {
 		myImage = document.getElementById('idProfilePic').src = 'images/mike.png';
 	}
-	else{
+	else {
 		myImage = document.getElementById('idProfilePic').src = 'images/dam-full.png';
 	}
-	
+
 	if (personInfo.visa != 'N') {
 		document.getElementById('cbVisa').checked = true;
 	}
-	
+
 	if (personInfo.passport != 'N') {
 		document.getElementById('cbPassport').checked = true;
 	}

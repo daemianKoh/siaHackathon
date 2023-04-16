@@ -56,7 +56,17 @@ public class IdeaController {
 		
 		String name = (String)session.getAttribute("nameValue");
 		String bookRefNo = (String)session.getAttribute("bookingRefNo");		
-		
 		return ideaService.getBookingDetail(bookRefNo, name);
+	}
+	
+	@RequestMapping(value = "/updateDetail", method = RequestMethod.POST)
+	public ModelAndView updateDetail(@RequestParam(name = "tbPssport") String tbPssport, @RequestParam(name = "tbVisa") String tbVisa,
+			@RequestParam(name = "tbPcr") String tbPcr, @RequestParam(name = "tbVax") String tbVax,
+			HttpSession session) throws Exception {
+		
+		String name = (String)session.getAttribute("nameValue");
+		String bookRefNo = (String)session.getAttribute("bookingRefNo");
+		
+		return new ModelAndView("fragments/detail/detailMain");
 	}
 }
