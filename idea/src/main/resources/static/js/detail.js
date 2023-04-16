@@ -33,21 +33,30 @@ function populateRequirement(personInfo) {
 	
 	document.getElementById("name").textContent = personInfo.name;
 	
+	if('CK' == personInfo.name){
+		myImage = document.getElementById('idProfilePic').src = 'images/ck-full.png';
+	}
+	else if('Balaji' == personInfo.name){
+		myImage = document.getElementById('idProfilePic').src = 'images/balaji-full.png';
+	}
+	else if('Mike' == personInfo.name){
+		myImage = document.getElementById('idProfilePic').src = 'images/mike.png';
+	}
+	else{
+		myImage = document.getElementById('idProfilePic').src = 'images/dam-full.png';
+	}
+	
 	if (personInfo.visa != 'N') {
 		document.getElementById('cbVisa').checked = true;
-		document.getElementById('cbVisa').disabled = true;
 	}
 	
 	if (personInfo.passport != 'N') {
 		document.getElementById('cbPassport').checked = true;
-		document.getElementById('cbPassport').disabled = true;
 	}
 	if (personInfo.pcr != 'N') {
 		document.getElementById('cbPcr').checked = true;
-		document.getElementById('cbPcr').disabled = true;
 	}
 	if (personInfo.vaccination != 'N') {
 		document.getElementById('cbVaccination').checked = true;
-		document.getElementById('cbVaccination').disabled = true;
 	}
 }

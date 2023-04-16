@@ -39,6 +39,74 @@ public class IdeaService {
 	@Autowired
 	CountryRepository countryRepository;
 	
+	private String initConversationBaseLine(String bookingRefNo, String name) {
+		StringBuilder sb = new StringBuilder("Flight Booking Reference no: " + bookingRefNo + ".");
+		sb.append(System.lineSeparator());
+		
+		Response response = getBookingDetail(bookingRefNo, name);
+		BookingSummaryResponse bookingSummary = (BookingSummaryResponse)response.getO();
+		
+		if(bookingSummary.getNumberOfPerson() == 1) {
+			sb.append(" I'm travelling alone.");
+		}
+		else {
+			sb.append(" I'm travelling in a group of " + bookingSummary.getNumberOfPerson() + ".");
+		}
+		sb.append(System.lineSeparator());
+		
+		sb.append("Departing from " + bookingSummary.getOriginFullName() + " Destination at " + bookingSummary.getDestinationFullName());
+		sb.append(System.lineSeparator());
+		
+		sb.append("Travel date is from " + bookingSummary.getDepartureFromSgDate() + " and return on " + bookingSummary.getReturnToSgDate());
+		sb.append(System.lineSeparator());
+		
+		getProfileForChatGpt(bookingSummary.getPersonInfos());
+		
+		return sb.toString();
+	}
+	
+	private String getStatus(PersonInfo p) {
+		StringBuilder sb = new StringBuilder();
+		
+		if(p.getPassport().equalsIgnoreCase("N")) {
+			sb.append("- passport not pack");
+			sb.append(System.lineSeparator());
+		}
+		if(p.getPcr().equalsIgnoreCase("N")) {
+			sb.append("- PCR not done");
+			sb.append(System.lineSeparator());
+		}
+		if(p.getVaccination().equalsIgnoreCase("N")) {
+			sb.append("- Covid Vaccination not done");
+			sb.append(System.lineSeparator());
+		}
+		if(p.getVisa().equalsIgnoreCase("N")) {
+			sb.append("- not apply");
+			sb.append(System.lineSeparator());
+		}
+		return sb.toString();
+	}
+	
+	private String getProfileForChatGpt(List<PersonInfo> personInfos) {
+		StringBuilder sb = new StringBuilder();
+		
+		if(personInfos.size() == 1) {
+			sb.append("This are my status currenty: ");
+			sb.append(System.lineSeparator());
+			sb.append(getStatus(personInfos.get(0)));
+		}
+		else {
+			sb.append("Below are the status for the following people: ");
+			sb.append(System.lineSeparator());
+			for(PersonInfo p : personInfos) {
+				sb.append("Name: " + p.getName());
+				sb.append(System.lineSeparator());
+				sb.append(getStatus(p));
+			}
+		}
+		return sb.toString();
+	}
+	
 	private List<PersonInfo> populatePersonInfo(List<FlightPersonInfo> flightPersonInfos, String name){
 		
 		List<PersonInfo> personInfos = new ArrayList<>();
