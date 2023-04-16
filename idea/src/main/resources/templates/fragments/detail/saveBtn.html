@@ -1,9 +1,13 @@
 <div class="row" th:fragment="saveBtn" xmlns:th="http://www.thymeleaf.org">
-	<div class="col-sm-3">
+
+	<div class="col-sm-8" style="text-align: center">
 	</div>
-	<div class="col-sm-6" style="text-align: center">
+	<div class="col-sm-1">
+		<a class="button-pop button-save"  th:href="@{/summary(bookingRefNo=${session.bookingRefNo})}">Back</a>
 	</div>
-	<div class="col-sm-3">
-		<a class="button-pop button-save" href="#popup1">Save</a>
-	</div>
+
+   <div class="col-sm-1">
+         <a class="button-pop button-back" href="#popup1">Save</a>
+   </div>
+
 </div>

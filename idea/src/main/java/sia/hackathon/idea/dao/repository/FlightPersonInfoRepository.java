@@ -5,5 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import sia.hackathon.idea.model.FlightPersonInfo;
 
 public interface FlightPersonInfoRepository extends JpaRepository<FlightPersonInfo, Long>{
+	
+	FlightPersonInfo findByPersonNameAndFlightBooking_BookingRefNo(String name, String bookRefNo);
 
 }

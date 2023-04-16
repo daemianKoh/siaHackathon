@@ -30,7 +30,7 @@ public class IdeaController {
 	}
 
 	@RequestMapping(value = "/summary", method = RequestMethod.GET)
-	public ModelAndView detail(@RequestParam(name = "bookingRefNo") String bookingRefNo, Model model) throws Exception {
+	public ModelAndView summary(@RequestParam(name = "bookingRefNo") String bookingRefNo, Model model) throws Exception {
 		model.addAttribute("bookingRefNo", bookingRefNo);
 		return new ModelAndView("fragments/summary/summaryMain");
 	}
@@ -64,9 +64,15 @@ public class IdeaController {
 			@RequestParam(name = "tbPcr") String tbPcr, @RequestParam(name = "tbVax") String tbVax,
 			HttpSession session) throws Exception {
 		
+		System.out.println("tbPssport " + tbPssport);
+		System.out.println("tbVisa " + tbVisa);
+		System.out.println("tbPcr " + tbPcr);
+		System.out.println("tbVax " + tbVax);
+		
 		String name = (String)session.getAttribute("nameValue");
 		String bookRefNo = (String)session.getAttribute("bookingRefNo");
+		ideaService.updateDetail(tbPssport, tbVisa, tbPcr, tbVax, name, bookRefNo);
 		
-		return new ModelAndView("fragments/detail/detailMain");
+		return new ModelAndView("redirect:/summary?bookingRefNo="+bookRefNo);
 	}
 }

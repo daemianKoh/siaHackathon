@@ -2,9 +2,15 @@ $(document).ready(function() {
 	getDetail();
 });
 
-const btnYes = document.getElementById('btnYes');
+const btnYes = document.getElementById('btnYesSave');
 btnYes.addEventListener('click', function(event) {
 	event.preventDefault();
+	
+	document.getElementById("tbPssport").value = document.getElementById("cbPassport").checked ? 'Y' : 'N';
+	document.getElementById("tbVisa").value = document.getElementById("cbVisa").checked ? 'Y' : 'N';
+	document.getElementById("tbPcr").value = document.getElementById("cbPcr").checked ? 'Y' : 'N';
+	document.getElementById("tbVax").value = document.getElementById("cbVaccination").checked ? 'Y' : 'N';
+	
 	const updateDetail = document.querySelector('#updateDetail');
 	updateDetail.submit();
 });

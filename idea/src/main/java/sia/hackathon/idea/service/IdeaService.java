@@ -17,6 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import sia.hackathon.idea.dao.repository.CountryRepository;
 import sia.hackathon.idea.dao.repository.FlightBookingRepository;
+import sia.hackathon.idea.dao.repository.FlightPersonInfoRepository;
 import sia.hackathon.idea.dto.BookingSummaryResponse;
 import sia.hackathon.idea.dto.GptOutput;
 import sia.hackathon.idea.dto.Message;
@@ -38,6 +39,23 @@ public class IdeaService {
 	
 	@Autowired
 	CountryRepository countryRepository;
+	
+	@Autowired
+	FlightPersonInfoRepository flightPersonInfoRepo;
+	
+	public Integer updateDetail(String passport, String visa, String pcr, String vax, String name, String bookRefNo) {
+		
+		FlightPersonInfo p = flightPersonInfoRepo.findByPersonNameAndFlightBooking_BookingRefNo(name, bookRefNo);
+		
+		if(!ObjectUtils.isEmpty(p)) {
+			p.setPassport(passport);
+			p.setVisa(visa);
+			p.setPcr(pcr);
+			p.setVaccination(vax);
+			flightPersonInfoRepo.save(p);
+		}
+		return 0;
+	}
 	
 	private String initConversationBaseLine(String bookingRefNo, String name) {
 		StringBuilder sb = new StringBuilder("Flight Booking Reference no: " + bookingRefNo + ".");
