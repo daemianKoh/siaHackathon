@@ -57,28 +57,106 @@ public class IdeaService {
 		return 0;
 	}
 	
-	private String initConversationBaseLine(String bookingRefNo, String name) {
-		StringBuilder sb = new StringBuilder("Flight Booking Reference no: " + bookingRefNo + ".");
+	public Response callChatGpt(String sysMsg, String userMsg) {
+		Response r = new Response();
+		
+		RequestWrapper wrapper = new RequestWrapper();
+		Message systemMessage = new Message("system", sysMsg);
+		Message userMessage = new Message("user", userMsg);
+		List<Message> messages = new ArrayList<>();
+		messages.add(systemMessage);
+		messages.add(userMessage);
+		
+		wrapper.setMessages(messages);
+
+		RestTemplate restTemplate = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		headers.set("api-key", System.getenv("SIA_GPT_API_KEY"));
+
+		HttpEntity<?> httpEntity = new HttpEntity<>(wrapper, headers);
+
+		String urlTemplate = UriComponentsBuilder.fromHttpUrl(System.getenv("SIA_GPT_URL")).queryParam("api-version", "2023-03-15-preview")
+				.encode().toUriString();
+		try {
+			ResponseEntity<?> response = restTemplate.exchange(urlTemplate, HttpMethod.POST, httpEntity, GptOutput.class);
+			GptOutput gptOutput = (GptOutput)response.getBody();
+			System.out.println(gptOutput.getChoices());
+			r.setO(gptOutput.getChoices().get(0));
+		}
+		catch(Exception ex) {
+			System.out.println("Connection timeout");
+			r.setReturnCode(1);
+		}
+		return r;
+	}
+	
+	public Response initChatGpt(String systemMessage) {
+		
+		Response r = new Response ();
+		
+		RequestWrapper wrapper = new RequestWrapper();
+		Message m = new Message("system", systemMessage);
+		List<Message> messages = new ArrayList<>();
+		messages.add(m);
+		wrapper.setMessages(messages);
+
+		RestTemplate restTemplate = new RestTemplate();
+		HttpHeaders headers = new HttpHeaders();
+		headers.setContentType(MediaType.APPLICATION_JSON);
+		headers.set("api-key", System.getenv("SIA_GPT_API_KEY"));
+
+		HttpEntity<?> httpEntity = new HttpEntity<>(wrapper, headers);
+
+		String urlTemplate = UriComponentsBuilder.fromHttpUrl(System.getenv("SIA_GPT_URL")).queryParam("api-version", "2023-03-15-preview")
+				.encode().toUriString();
+		try {
+			ResponseEntity<?> response = restTemplate.exchange(urlTemplate, HttpMethod.POST, httpEntity, GptOutput.class);
+			GptOutput gptOutput = (GptOutput)response.getBody();
+			System.out.println(gptOutput.getChoices());
+			r.setO(gptOutput.getChoices().get(0));
+		}
+		catch(Exception ex) {
+			System.out.println("Connection timeout");
+			r.setReturnCode(1);
+		}
+		return r;
+	}
+	
+	public String getChatGptSystemMessage(String bookingRefNo) {
+		
+		String initConv = initConversationBaseLine(bookingRefNo);
+		
+		
+		return initConv;
+	}
+	
+	private String initConversationBaseLine(String bookingRefNo) {
+		
+		StringBuilder sb = new StringBuilder("You are ScootBr help on answering question. Below are the information for your knowledge:");
 		sb.append(System.lineSeparator());
 		
-		Response response = getBookingDetail(bookingRefNo, name);
+		sb.append("Flight Booking Reference no: " + bookingRefNo + ".");
+		sb.append(System.lineSeparator());
+		
+		Response response = getBookingDetail(bookingRefNo, null);
 		BookingSummaryResponse bookingSummary = (BookingSummaryResponse)response.getO();
 		
 		if(bookingSummary.getNumberOfPerson() == 1) {
 			sb.append(" I'm travelling alone.");
 		}
 		else {
-			sb.append(" I'm travelling in a group of " + bookingSummary.getNumberOfPerson() + ".");
+			sb.append("I'm travelling in a group of " + bookingSummary.getNumberOfPerson() + ".");
 		}
 		sb.append(System.lineSeparator());
 		
-		sb.append("Departing from " + bookingSummary.getOriginFullName() + " Destination at " + bookingSummary.getDestinationFullName());
+		sb.append("Departing from " + bookingSummary.getOriginFullName() + ", Destination at " + bookingSummary.getDestinationFullName());
 		sb.append(System.lineSeparator());
 		
 		sb.append("Travel date is from " + bookingSummary.getDepartureFromSgDate() + " and return on " + bookingSummary.getReturnToSgDate());
 		sb.append(System.lineSeparator());
 		
-		getProfileForChatGpt(bookingSummary.getPersonInfos());
+		sb.append(getProfileForChatGpt(bookingSummary.getPersonInfos()));
 		
 		return sb.toString();
 	}
@@ -90,16 +168,31 @@ public class IdeaService {
 			sb.append("- passport not pack");
 			sb.append(System.lineSeparator());
 		}
+		else {
+			sb.append("- passport is packed");
+			sb.append(System.lineSeparator());
+		}
 		if(p.getPcr().equalsIgnoreCase("N")) {
 			sb.append("- PCR not done");
+			sb.append(System.lineSeparator());
+		}
+		else {
+			sb.append("- PCR is done");
 			sb.append(System.lineSeparator());
 		}
 		if(p.getVaccination().equalsIgnoreCase("N")) {
 			sb.append("- Covid Vaccination not done");
 			sb.append(System.lineSeparator());
+		}else {
+			sb.append("- Covid Vacciation done");
+			sb.append(System.lineSeparator());
 		}
 		if(p.getVisa().equalsIgnoreCase("N")) {
-			sb.append("- not apply");
+			sb.append("- visa not apply");
+			sb.append(System.lineSeparator());
+		}
+		else {
+			sb.append("- visa applied");
 			sb.append(System.lineSeparator());
 		}
 		return sb.toString();
@@ -109,7 +202,7 @@ public class IdeaService {
 		StringBuilder sb = new StringBuilder();
 		
 		if(personInfos.size() == 1) {
-			sb.append("This are my status currenty: ");
+			sb.append("Below are the travel status: ");
 			sb.append(System.lineSeparator());
 			sb.append(getStatus(personInfos.get(0)));
 		}
@@ -120,6 +213,7 @@ public class IdeaService {
 				sb.append("Name: " + p.getName());
 				sb.append(System.lineSeparator());
 				sb.append(getStatus(p));
+				sb.append(System.lineSeparator());
 			}
 		}
 		return sb.toString();

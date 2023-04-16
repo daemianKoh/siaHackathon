@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
+import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import sia.hackathon.idea.dto.GptOutput;
 import sia.hackathon.idea.dto.Response;
 import sia.hackathon.idea.service.IdeaService;
 
@@ -64,15 +66,28 @@ public class IdeaController {
 			@RequestParam(name = "tbPcr") String tbPcr, @RequestParam(name = "tbVax") String tbVax,
 			HttpSession session) throws Exception {
 		
-		System.out.println("tbPssport " + tbPssport);
-		System.out.println("tbVisa " + tbVisa);
-		System.out.println("tbPcr " + tbPcr);
-		System.out.println("tbVax " + tbVax);
-		
 		String name = (String)session.getAttribute("nameValue");
 		String bookRefNo = (String)session.getAttribute("bookingRefNo");
 		ideaService.updateDetail(tbPssport, tbVisa, tbPcr, tbVax, name, bookRefNo);
 		
 		return new ModelAndView("redirect:/summary?bookingRefNo="+bookRefNo);
+	}
+	
+	@RequestMapping(value = "/initChatGpt", method = RequestMethod.POST)
+	public Response initChatGpt(HttpSession session)
+			throws Exception {
+		
+		String bookRefNo = (String)session.getAttribute("bookingRefNo");
+		String systemMessage = ideaService.getChatGptSystemMessage(bookRefNo);
+		session.setAttribute("chatGptSysMessage", systemMessage);
+		return ideaService.initChatGpt(systemMessage);
+	}
+	
+	@RequestMapping(value = "/callChatGpt", method = RequestMethod.POST)
+	public Response callChatGpt(@RequestParam(name = "message") String userMsg, HttpSession session)
+			throws Exception {
+		
+		String sysMessage = (String)session.getAttribute("chatGptSysMessage");
+		return ideaService.callChatGpt(sysMessage, userMsg);
 	}
 }

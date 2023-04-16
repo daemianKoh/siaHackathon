@@ -596,6 +596,8 @@ background-color: #000000;
   margin-left: -8%;
   margin-top: 3%;
   transition: all 0.8s ease;
+  height: 500px;
+  overflow: scroll;
 
   transition: all 0.8s ease;
 }
@@ -613,7 +615,7 @@ background-color: #000000;
 		border-radius: 100%;
 		box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
 
-		position: absolute; top: -1.5rem; right: -1.5rem;
+		position: absolute; top: 0.5rem; right: 0.5rem;
 	}
 
 .lightbox:target {

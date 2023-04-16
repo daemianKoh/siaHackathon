@@ -1,10 +1,79 @@
+var adminChat = 0;
+var userChat = 0;
+
 $(document).ready(function() {
 	getDetail();
 });
 
+function getAdminBubble(idNo, message){
+	const divClassBubble = '<div class="chat-bubble msg-self">' + message + '</div>';
+	const divClassChatContainer= '<div class="chat-bubble-container ">' + divClassBubble + '</div>';
+	const divClassRow = '<div class="row no-gutters" id="admin-'+ idNo + '">' + divClassChatContainer + '</div>';	
+	return divClassRow;
+}
+
+function getUserBubble(idNo, message){
+	const divClassBubble = '<div class="chat-bubble msg-friend">' + message + '</div>';
+	const divClassChatContainer= '<div class="chat-bubble-container ">' + divClassBubble + '</div>';
+	const divClassRow = '<div class="row no-gutters" id="user-'+ idNo + '">' + divClassChatContainer + '</div>';	
+	return divClassRow;
+}
+
+function sendGptMsg (){
+	const msg = document.getElementById('tbMessageToGpt').value;
+	
+	var path = './callChatGpt?message=' + encodeURIComponent(msg);
+	document.getElementById('tbMessageToGpt').value = '';
+	
+	$.ajax({
+		type: "POST",
+		contentType: "application/json",
+		url: path,
+		success: function(data) {
+			if (data.returnCode == 0) {
+				var message = data.o.message.content;
+				console.log(data.o);
+				var count = adminChat - 1;
+				const latestAdminDiv = document.getElementById('admin-' + count);
+				latestAdminDiv.insertAdjacentHTML('afterend', getUserBubble(userChat, msg));
+				const userDiv = document.getElementById('user-' + userChat);
+				userDiv.insertAdjacentHTML('afterend', getAdminBubble(adminChat, message));
+				userChat = userChat + 1;
+				adminChat = adminChat + 1;
+				
+			}
+			else {
+				console.log("Error");
+			}
+		},
+		error: function(e) {
+			console.log("error");
+		}
+	});
+}
 
 function initGpt(){
-	
+	var path = './initChatGpt';
+	$.ajax({
+		type: "POST",
+		contentType: "application/json",
+		url: path,
+		success: function(data) {
+			if (data.returnCode == 0) {
+				var message = data.o.message.content;
+				console.log(data.o);
+				const parentDiv = document.getElementById('mainMessageBox');
+				parentDiv.innerHTML = getAdminBubble(adminChat, message);
+				adminChat = adminChat + 1;
+			}
+			else {
+				console.log("Error");
+			}
+		},
+		error: function(e) {
+			console.log("error");
+		}
+	});
 }
 
 const btnYes = document.getElementById('btnYesSave');
