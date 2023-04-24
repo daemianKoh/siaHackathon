@@ -54,6 +54,14 @@ function sendGptMsg (){
 
 function initGpt(){
 	var path = './initChatGpt';
+	const parentDiv = document.getElementById('mainMessageBox');
+	
+	var childDivs = parentDiv.getElementsByTagName("div");
+	while(childDivs.length > 0){
+		parentDiv.removeChild(childDivs[0]);
+	}
+	
+	
 	$.ajax({
 		type: "POST",
 		contentType: "application/json",
@@ -62,7 +70,7 @@ function initGpt(){
 			if (data.returnCode == 0) {
 				var message = data.o.message.content;
 				console.log(data.o);
-				const parentDiv = document.getElementById('mainMessageBox');
+				
 				parentDiv.innerHTML = getAdminBubble(adminChat, message);
 				adminChat = adminChat + 1;
 			}
